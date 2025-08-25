@@ -16,24 +16,24 @@
   },
   "dependencies": {
     "@packages/core": "workspace:*",
-    "@remix-run/cloudflare": "^2.15.3",
-    "@remix-run/react": "^2.15.3",
-    "@remix-run/server-runtime": "^2.15.3",
-    "isbot": "^4.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@remix-run/cloudflare": "^2.17.0",
+    "@remix-run/react": "^2.17.0",
+    "@remix-run/server-runtime": "^2.17.0",
+    "isbot": "^5.1.30",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250321.0",
-    "@remix-run/dev": "^2.15.3",
-    "@types/react": "^18.2.20",
-    "@types/react-dom": "^18.2.7",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.4",
-    "vite": "^6.0.0",
-    "vite-tsconfig-paths": "^4.2.1",
-    "wrangler": "4.5.0"
+    "@cloudflare/workers-types": "^4.20250823.0",
+    "@remix-run/dev": "^2.17.0",
+    "@types/react": "^19.1.11",
+    "@types/react-dom": "^19.1.7",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.12",
+    "vite": "^7.1.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "wrangler": "4.32.0"
   },
   "engines": {
     "node": ">=20.0.0"
