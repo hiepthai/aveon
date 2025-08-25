@@ -6,7 +6,7 @@ compatibility_date = "2025-03-21"
 main = "./server.ts"
 
 [assets]
-directory = "./build/client"
+directory = "/build/client"
 
 [observability]
 enabled = true
