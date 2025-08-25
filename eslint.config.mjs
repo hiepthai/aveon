@@ -149,6 +149,7 @@ export default [
 
         typescript: {
           alwaysTryTypes: true,
+          project: ['apps/*/tsconfig.json', 'packages/*/tsconfig.json'],
         },
       },
     },
