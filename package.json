@@ -1,0 +1,42 @@
+{
+  "name": "hono-remix-stater",
+  "version": "1.0.0",
+  "description": "Hono + Remix Starter",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo build",
+    "dev:node": "turbo dev --filter=@apps/remix-node --filter=@apps/hono-node",
+    "dev:cf": "turbo dev --filter=@apps/remix-cf --filter=@apps/hono-cf",
+    "lint": "turbo lint",
+    "deploy": "turbo deploy",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/compat": "^1.2.7",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.23.0",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-import-resolver-typescript": "^4.2.5",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.2.5",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "rimraf": "^6.0.1",
+    "turbo": "^2.4.4",
+    "typescript": "^5.8.2"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20 <21"
+  }
+}
