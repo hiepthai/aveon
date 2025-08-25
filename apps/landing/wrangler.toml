@@ -1,7 +1,7 @@
 #:schema node_modules/wrangler/config-schema.json
 # For more details on how to configure Wrangler, refer to:
 # https://developers.cloudflare.com/workers/wrangler/configuration/
-name = "remix-cf"
+name = "aveon-landing-page"
 compatibility_date = "2025-03-21"
 main = "./server.ts"
 
