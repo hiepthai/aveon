@@ -1,12 +1,11 @@
 {
-  "name": "hono-remix-stater",
+  "name": "aveon-monorepo",
   "version": "1.0.0",
   "description": "Hono + Remix Starter",
   "main": "index.js",
   "scripts": {
     "build": "turbo build",
-    "dev:node": "turbo dev --filter=@apps/remix-node --filter=@apps/hono-node",
-    "dev:cf": "turbo dev --filter=@apps/remix-cf --filter=@apps/hono-cf",
+    "dev": "turbo dev --filter=@apps/api --filter=@apps/landing",
     "lint": "turbo lint",
     "deploy": "turbo deploy",
     "format": "prettier --write ."

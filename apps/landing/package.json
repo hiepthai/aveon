@@ -1,5 +1,5 @@
 {
-  "name": "@apps/remix-cf",
+  "name": "@apps/landing",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -15,7 +15,7 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@packages/hono-core": "workspace:*",
+    "@packages/core": "workspace:*",
     "@remix-run/cloudflare": "^2.15.3",
     "@remix-run/react": "^2.15.3",
     "@remix-run/server-runtime": "^2.15.3",

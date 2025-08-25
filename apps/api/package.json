@@ -1,11 +1,11 @@
 {
-  "name": "@apps/hono-cf",
+  "name": "@apps/api",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify"
   },
   "dependencies": {
-    "@packages/hono-core": "workspace:*",
+    "@packages/core": "workspace:*",
     "hono": "^4.7.5"
   },
   "devDependencies": {

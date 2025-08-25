@@ -1,5 +1,5 @@
 {
-  "name": "@packages/hono-core",
+  "name": "@packages/core",
   "private": true,
   "exports": {
     "./client": "./src/client.ts",
