@@ -1,6 +1,7 @@
 import type { MetaFunction } from '@remix-run/cloudflare';
 
-import { AveonLogo } from '~/components/logo';
+import { Header } from '~/components/header';
+import { Hero } from '~/components/hero';
 
 export const meta: MetaFunction = () => {
   return [
@@ -11,10 +12,9 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="flex flex-col items-center gap-16">
-        <AveonLogo className="w-xs fill-gray-500 dark:fill-gray-200" />
-      </div>
+    <div className="min-h-screen bg-white">
+      <Header />
+      <Hero />
     </div>
   );
 }
