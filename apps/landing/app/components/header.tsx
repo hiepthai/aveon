@@ -1,23 +1,13 @@
-import { Button } from '~/components/ui/button';
-
 export const Header = () => (
   <header className="border-b border-gray-100 px-6 py-4">
-    <div className="mx-auto max-w-7xl flex items-center justify-between">
-      <div className="flex items-center space-x-8">
-        <nav className="hidden md:flex items-center space-x-8">
-          <a href="#features" className="text-gray-600 hover:text-gray-900">
-            hi@aveon.app
-          </a>
-          <a href="#features" className="text-gray-600 hover:text-gray-900">
-            Features
-          </a>
-        </nav>
+    <div className="mx-auto max-w-4xl flex items-center justify-between">
+      <div className="flex items-center">
+        <a href="mailto:hi@aveon.app" className="text-sm text-gray-600 hover:text-gray-900">
+          hi@aveon.app
+        </a>
       </div>
-      <div className="flex items-center space-x-4">
-        <button className="text-gray-600 hover:text-gray-900">Login</button>
-        <Button className="bg-[#4B59BC] hover:bg-[#3d4a9f] text-white px-6">
-          Get Started
-        </Button>
+      <div className="text-xs text-gray-500">
+        🚀 Limited Beta • First 1,000 users get early pricing
       </div>
     </div>
   </header>
