@@ -3,7 +3,7 @@ import { useFetcher } from '@remix-run/react';
 import { ActionFunction } from '@remix-run/server-runtime';
 import { google } from 'googleapis';
 import { StatusCodes } from 'http-status-codes';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect, useRef } from 'react';
 import { z } from 'zod';
 
 import { Header } from '~/components/header';
@@ -139,46 +139,56 @@ export const action: ActionFunction = async ({ request, context }) => {
     );
   }
 
+  const challengeText = challengeOptions[challenge];
+
   const result = await addToGoogleSheets(
     email,
-    challenge,
+    challengeText,
     context.cloudflare.env,
   );
 
   return data<JsonResponse>(result);
 };
 
+const challengeOptions: Record<string, string> = {
+  forgetting: 'I forget everything after a few days',
+  time: "I don't have time to review properly",
+  motivation: 'I lose motivation to keep studying',
+  application: "I can't apply what I learn",
+  passiveNotes: 'My notes just sit there collecting dust',
+  pkmOverload: "Too much info in my PKM, can't retain it",
+};
+
 const WaitlistForm = () => {
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<JsonResponse>();
+  const emailRef = useRef<HTMLInputElement>(null);
   const isLoading = fetcher.state !== 'idle';
 
   console.log(fetcher.data);
+
+  useEffect(() => {
+    if (fetcher.data?.error?.details?.email) {
+      emailRef?.current?.focus();
+    }
+  }, [fetcher.data]);
 
   return (
     <fetcher.Form method="post">
       <div className="bg-gray-50 rounded-lg p-6 mb-8 max-w-3xl mx-auto">
         <p className="text-sm text-gray-600 mb-4">
-          What's your biggest learning challenge?
+          What&#39;s your biggest learning challenge?
         </p>
         <select
           className="w-full p-3 border border-gray-200 rounded-lg mb-4 text-gray-700"
           name="challenge"
         >
           <option value="">Select your main struggle...</option>
-          <option value="forgetting">
-            I forget everything after a few days
-          </option>
-          <option value="time">I don't have time to review properly</option>
-          <option value="motivation">I lose motivation to keep studying</option>
-          <option value="application">I can't apply what I learn</option>
-          <option value="passive-notes">
-            My notes just sit there collecting dust
-          </option>
-          <option value="pkm-overload">
-            Too much info in my PKM, can't retain it
-          </option>
+          {Object.entries(challengeOptions).map(([key, value]) => (
+            <option key={key} value={key}>
+              {value}
+            </option>
+          ))}
         </select>
-
         <div className="flex flex-col sm:flex-row gap-3">
           <Input
             type="email"
@@ -186,6 +196,7 @@ const WaitlistForm = () => {
             className="flex-1"
             name="email"
             required
+            ref={emailRef}
             onFocus={() => {
               if (typeof window !== 'undefined' && window.gtag) {
                 window.gtag('event', 'email_signup_focus', {
@@ -213,6 +224,16 @@ const WaitlistForm = () => {
             Get Early Access
           </Button>
         </div>
+        {fetcher.data?.error?.details?.email && (
+          <div className="text-sm text-destructive mt-2">
+            {fetcher.data?.error?.details?.email}
+          </div>
+        )}
+        {fetcher.data?.ok && (
+          <div className="text-sm text-green-600 mt-2">
+            Your email address has been registered.
+          </div>
+        )}
       </div>
 
       <div className="text-center space-y-2">
