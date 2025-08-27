@@ -9,6 +9,7 @@ import devtoolsJson from 'vite-plugin-devtools-json';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 import { getLoadContext } from './load-context';
+import ProcessExitPlugin from './vite/process-exit-plugin';
 
 declare module '@remix-run/cloudflare' {
   interface Future {
@@ -34,6 +35,7 @@ export default defineConfig({
     tailwindcss(),
     devtoolsJson(),
     cloudflare(),
+    ProcessExitPlugin(),
   ],
   ssr: {
     resolve: {
