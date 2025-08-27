@@ -173,7 +173,7 @@ const WaitlistForm = () => {
   }, [fetcher.data]);
 
   return (
-    <fetcher.Form method="post">
+    <fetcher.Form method="post" className="mb-8">
       <div className="bg-gray-50 rounded-lg p-6 mb-8 max-w-3xl mx-auto">
         <p className="text-sm text-gray-600 mb-4">
           What&#39;s your biggest learning challenge?
@@ -240,9 +240,9 @@ const WaitlistForm = () => {
         <p className="text-sm text-gray-600">
           <strong>Join 847 professionals</strong> already on the waitlist
         </p>
-        <p className="text-xs text-gray-500">
-          ✓ Free forever plan available • ✓ Early bird pricing for first 1,000
-          users
+        <p className="inline-flex flex-col md:flex-row md:space-x-2 text-xs text-gray-500">
+          <span>✓ Free forever plan available</span>
+          <span>✓ Early bird pricing for first 1,000 users</span>
         </p>
       </div>
     </fetcher.Form>
