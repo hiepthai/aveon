@@ -1,15 +1,19 @@
-import { data, MetaFunction } from '@remix-run/cloudflare';
-import { useFetcher } from '@remix-run/react';
-import { ActionFunction } from '@remix-run/server-runtime';
-import { google } from 'googleapis';
 import { StatusCodes } from 'http-status-codes';
-import { ReactElement, useCallback, useEffect, useRef } from 'react';
+import type { ReactElement } from 'react';
+import { useEffect, useRef } from 'react';
+import {
+  type ActionFunction,
+  data,
+  type MetaFunction,
+  useFetcher,
+} from 'react-router';
 import { z } from 'zod';
 
 import { Header } from '~/components/header';
 import { Hero } from '~/components/hero';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
+import { appendToSheet } from '~/lib/google-sheet';
 
 export const meta: MetaFunction = () => {
   return [
@@ -99,60 +103,6 @@ async function verifyTurnstile(
   }
 }
 
-async function addToGoogleSheets(
-  email: string,
-  challenge: string,
-  env: Env,
-): Promise<JsonResponse<unknown>> {
-  const SPREADSHEET_ID = env.GOOGLE_SHEETS_ID;
-  const SHEET_NAME = 'Aveon Waitlist';
-  const client_email = env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const private_key = env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(
-    /\\n/g,
-    '\n',
-  );
-
-  try {
-    // Initialize Google Sheets API with service account
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email,
-        private_key,
-      },
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-    });
-
-    const sheets = google.sheets({ version: 'v4', auth });
-
-    const timestamp = new Date().toISOString();
-
-    const values = [[timestamp, email, challenge || '']];
-
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}!A:C`,
-      valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values,
-      },
-    });
-
-    return { ok: true };
-  } catch (error) {
-    console.error('Error adding to Google Sheets:', error);
-    return {
-      ok: false,
-      error: {
-        code: 500,
-        message: 'Unable to process your request',
-        details: {
-          response: (error as Error).message,
-        },
-      },
-    };
-  }
-}
-
 export const action: ActionFunction = async ({ request, context }) => {
   const formData = await request.formData();
   const challenge = formData.get('challenge') as string;
@@ -192,14 +142,28 @@ export const action: ActionFunction = async ({ request, context }) => {
   }
 
   const challengeText = challengeOptions[challenge];
+  const SHEET_NAME = 'Aveon Waitlist';
 
-  const result = await addToGoogleSheets(
-    email,
-    challengeText,
-    context.cloudflare.env,
-  );
+  try {
+    await appendToSheet(
+      SHEET_NAME,
+      [[new Date().toISOString(), email, challengeText]],
+      context.cloudflare.env,
+    );
 
-  return data<JsonResponse>(result);
+    return data<JsonResponse>({ ok: true });
+  } catch (error) {
+    return data<JsonResponse>({
+      ok: false,
+      error: {
+        code: 500,
+        message: 'Unable to process your request',
+        details: {
+          response: (error as Error).message,
+        },
+      },
+    });
+  }
 };
 
 const challengeOptions: Record<string, string> = {
