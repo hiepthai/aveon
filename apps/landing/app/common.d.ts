@@ -1,3 +1,9 @@
+interface ErrorObject {
+  code: number;
+  message: string;
+  details: Record<string, string>;
+}
+
 interface JsonResponse<Data = unknown> {
   ok: boolean;
   data?: Data;
@@ -9,8 +15,6 @@ interface SuccessJsonResponse<Data = unknown>
   data: Data;
 }
 
-declare global {
-  interface Window {
-    gtag: (command: string, targetId: string, parameters?: Record<string, any>) => void;
-  }
+interface Window {
+  gtag: (command: string, targetId: string, parameters?: Record<string, any>) => void;
 }

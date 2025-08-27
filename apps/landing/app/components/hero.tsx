@@ -1,9 +1,7 @@
 import { AveonLogo } from '~/components/logo';
-import { Button } from '~/components/ui/button';
-import { Input } from '~/components/ui/input';
 
 export const Hero = () => (
-  <section className="px-6 py-20">
+  <section className="px-6 pt-20">
     <div className="mx-auto max-w-5xl text-center">
       <div className="mb-8 flex flex-col items-center justify-center">
         <AveonLogo className="max-w-48 fill-gray-600 dark:fill-gray-200 mb-12" />
@@ -102,71 +100,6 @@ export const Hero = () => (
           </div>
         </div>
       </div>
-
-      <div className="bg-gray-50 rounded-lg p-6 mb-8 max-w-3xl mx-auto">
-        <p className="text-sm text-gray-600 mb-4">
-          What's your biggest learning challenge?
-        </p>
-        <select className="w-full p-3 border border-gray-200 rounded-lg mb-4 text-gray-700">
-          <option value="">Select your main struggle...</option>
-          <option value="forgetting">
-            I forget everything after a few days
-          </option>
-          <option value="time">I don't have time to review properly</option>
-          <option value="motivation">I lose motivation to keep studying</option>
-          <option value="application">I can't apply what I learn</option>
-          <option value="passive-notes">
-            My notes just sit there collecting dust
-          </option>
-          <option value="pkm-overload">
-            Too much info in my PKM, can't retain it
-          </option>
-        </select>
-
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Input
-            type="email"
-            placeholder="Enter your email address"
-            className="flex-1"
-            onFocus={() => {
-              if (typeof window !== 'undefined' && window.gtag) {
-                window.gtag('event', 'email_signup_focus', {
-                  event_category: 'engagement',
-                  event_label: 'email_input_focus',
-                  custom_parameter: 'email_signup_focus',
-                });
-              }
-            }}
-          />
-          <Button
-            className="px-8 py-3 bg-[#4B59BC] hover:bg-[#3d4a9f] text-white font-semibold"
-            onClick={() => {
-              if (typeof window !== 'undefined' && window.gtag) {
-                window.gtag('event', 'email_signup_attempt', {
-                  event_category: 'conversion',
-                  event_label: 'early_access_button',
-                  custom_parameter: 'email_signup_click',
-                });
-              }
-            }}
-          >
-            Get Early Access
-          </Button>
-        </div>
-      </div>
-
-      <div className="text-center space-y-2">
-        <p className="text-sm text-gray-600">
-          <strong>Join 847 professionals</strong> already on the waitlist
-        </p>
-        <p className="text-xs text-gray-500">
-          ✓ Free forever plan available • ✓ Early bird pricing for first 1,000
-          users
-        </p>
-      </div>
-
-      {/* Hero Illustration */}
-      <div className="mt-16"></div>
     </div>
   </section>
 );
