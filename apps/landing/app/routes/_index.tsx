@@ -1,5 +1,4 @@
 import type { MetaFunction } from '@remix-run/cloudflare';
-import { useEffect } from 'react';
 
 import { Header } from '~/components/header';
 import { Hero } from '~/components/hero';
@@ -34,16 +33,6 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'page_view', {
-        page_title: 'Aveon Landing Page',
-        page_location: window.location.href,
-        custom_parameter: 'website_visit',
-      });
-    }
-  }, []);
-
   return (
     <div className="min-h-screen bg-white">
       <Header />
