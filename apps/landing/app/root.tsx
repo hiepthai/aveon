@@ -44,6 +44,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
             `,
           }}
         />
+        <script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+          async
+          defer
+        ></script>
       </head>
       <body>
         {children}

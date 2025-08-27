@@ -4,6 +4,7 @@ import {
 } from '@remix-run/dev';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
+import devtoolsJson from 'vite-plugin-devtools-json';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 import { getLoadContext } from './load-context';
@@ -30,6 +31,7 @@ export default defineConfig({
     }),
     tsconfigPaths(),
     tailwindcss(),
+    devtoolsJson(),
   ],
   ssr: {
     resolve: {
