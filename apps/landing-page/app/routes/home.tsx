@@ -181,8 +181,6 @@ const WaitlistForm = () => {
   const turnstileRef = useRef<HTMLDivElement>(null);
   const isLoading = fetcher.state !== 'idle';
 
-  console.log(fetcher.data);
-
   useEffect(() => {
     if (fetcher.data?.error?.details?.email) {
       emailRef?.current?.focus();
