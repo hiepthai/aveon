@@ -128,8 +128,28 @@ export const Hero = () => (
             type="email"
             placeholder="Enter your email address"
             className="flex-1"
+            onFocus={() => {
+              if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'email_signup_focus', {
+                  event_category: 'engagement',
+                  event_label: 'email_input_focus',
+                  custom_parameter: 'email_signup_focus',
+                });
+              }
+            }}
           />
-          <Button className="px-8 py-3 bg-[#4B59BC] hover:bg-[#3d4a9f] text-white font-semibold">
+          <Button
+            className="px-8 py-3 bg-[#4B59BC] hover:bg-[#3d4a9f] text-white font-semibold"
+            onClick={() => {
+              if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'email_signup_attempt', {
+                  event_category: 'conversion',
+                  event_label: 'early_access_button',
+                  custom_parameter: 'email_signup_click',
+                });
+              }
+            }}
+          >
             Get Early Access
           </Button>
         </div>
