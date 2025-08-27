@@ -6,7 +6,7 @@
   "scripts": {
     "build": "remix vite:build",
     "deploy": "pnpm run build && wrangler deploy",
-    "dev": "remix vite:dev",
+    "dev": "vite dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "wrangler dev",
     "typecheck": "tsc",
@@ -32,6 +32,7 @@
     "zod": "^4.1.1"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.12.0",
     "@remix-run/dev": "^2.17.0",
     "@tailwindcss/vite": "^4.1.12",
     "@types/react": "^19.1.11",

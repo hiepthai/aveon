@@ -3,7 +3,7 @@
 # https://developers.cloudflare.com/workers/wrangler/configuration/
 name = "aveon-landing-page"
 compatibility_date = "2025-03-21"
-main = "./server.ts"
+main = "./src/index.ts"
 
 [assets]
 directory = "./build/client"
@@ -28,9 +28,7 @@ enabled = true
  [vars]
  GOOGLE_SHEETS_ID = "11qwalHb9Gp4qdHh02IY_eedJkLPIC4j5VHwRH24qnEs"
  GOOGLE_SERVICE_ACCOUNT_EMAIL = "landing-page@aveon-project.iam.gserviceaccount.com"
- GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCsOVhZs0AUONXJ\nmsUyzTnmZyp/byKvvvVNg3/71gppUhJyxFLP0++/iFtl/RvlS5nkTIlFzAtYOgw2\nQb8+/NFgJ0CoS2XDSlzqrkAiGJPPmNHXZwhbURPGswPQCsHn0Doiie9Sark/gvx8\nQGhRggK1Rwx/JzV9+cscBcWLKNZwyUtM5Zu0C6v5B8mV+gV7xY6RzOcq6qraQNBx\nQPdSCqGwJe2wBhXO5T8GTkNh9QPh81ikCwapYOR3wE6Gvu7JfmWhNUl/sFiS6qyw\nxogcltmv31GsDBmscgFlKgV9bKPUErhfvqTxKifoD8vQcU7VCf3q2/EBHn/NvGgN\nI0B2lFixAgMBAAECggEAAnFseRabhxiTTSEpQPeQ+wgQSJnT/SLmqespSpzrrY4g\n0t30FXH6iatZLeYxmhwWGnCiKzT3cuXykbvMXGFhEE3I6K+WdExpawQpHBK12Lu1\n5lSrgALIwV3Sulsctbl0yalOlXW2xlmI/rOPMfDNMbMd+0PGyiWxUDweDu5NCcaF\n7oJvaUbHQsP8oSld8CM52+5CyWk5JulJ98GrRScLuzDDsm6TTMJI9v3jrjntGClB\n6kUKgj9MJpng/0JMk9WtJ21Afl24wDpZdOX3bX8mNt7c5tFgJpBfT1yfo4/Lwrm2\nv/DnLNPdFrliwSICMwC2RA/DbOfcp5XKjWmwsSLcbQKBgQDZ3aqIjpQxqubwvLJU\nBF/B4au/S6shN5jc0mJYXDWOflu0GwJDBg50ndE3g0Aq26PQ3ZK3CmuIVrNYCPNn\nE+3O7vzin8leM6hN1bUEksRouFS741GqVELweQEzedqhJIAfsuOBTiNtrAeUGoC7\nbOxw8OYOC7HxyDdhOzPBhKIMKwKBgQDKXoQRqlNBtH8wd28LGObDpkZofX1unMB+\nHjB9UqLOeJtChfpxZVyyAgAHKCd+9Jca3CTvh7KFANMQEAaA+Ma/VJNLiOsrCMQn\nzkj03Lt7VWufgoZmLqSXSISEfiw4JaqbKCH37XTlw6hZh6bHFLQaTWOIRTOVPdji\nUtUfn7wUkwKBgFklGmJF9N1d0KEwlMdMAuKSNHRRwfQVi7bPXu5IzKFBksRfSM2j\n7MZKzRCp49elh6IvB5ld6iIfV8Lt5qqGvQevQkp4lyy0dmliyG7Wnwc6ZXF70i6f\ny8QZvyQQ+CR3ivVtfSmrj1OQ0IkJTyNhrl2INJoKrwT/p6lhUAwe+S+BAoGBAIL7\nHdwZM/4JB3GlO/ggy+vCSTwETRU029pFS/kxbTLaGRO7h9exVYfZh48aTEX9pXe7\nGST33XH8kJ+K38rGOk1IPnXbTurxp5RkDhB+ddJj/V6mqrqkYd+RDkR7Lb/BkWUP\nWr0PsmOseeBIzod4PQHxKQTgVXy5JRGHr23ig2eFAoGAPrlyGl+p8UFaFdkQto0B\nOoGRhmeMzFeV9hoGOj1EI3pEvU6Cq8i2YVib02n277q/ZL2FFOxgmDhtfoSlk9cY\n19b7ePQHoWQyoTQXFOD1QCa7ozTlaGdgMxQ4desD8wMKPtLwJ8U1Qu+zx2NjU3a9\nifIo9otT843+p5zN9lbSRGg=\n-----END PRIVATE KEY-----\n"
  TURNSTILE_SITE_KEY="0x4AAAAAABvBJU5T91Dtequn"
- TURNSTILE_SECRET_KEY="0x4AAAAAABvBJSKNWtFBLvCut6kFG1dfgkg"
 
 # Note: Use secrets to store sensitive data.
 # https://developers.cloudflare.com/workers/configuration/secrets/

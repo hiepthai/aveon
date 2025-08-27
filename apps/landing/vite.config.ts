@@ -1,3 +1,4 @@
+import { cloudflare } from '@cloudflare/vite-plugin';
 import {
   cloudflareDevProxyVitePlugin,
   vitePlugin as remix,
@@ -32,6 +33,7 @@ export default defineConfig({
     tsconfigPaths(),
     tailwindcss(),
     devtoolsJson(),
+    cloudflare(),
   ],
   ssr: {
     resolve: {
