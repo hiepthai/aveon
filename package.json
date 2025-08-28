@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev --filter=@apps/api --filter=@apps/landing",
+    "dev:studio": "turbo dev --filter=@apps/api --filter=@apps/studio",
+    "dev:landing": "turbo dev --filter=@apps/landing-page",
     "lint": "turbo lint",
     "deploy": "turbo deploy",
     "format": "prettier --write ."
