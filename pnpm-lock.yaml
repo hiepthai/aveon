@@ -157,6 +157,12 @@ importers:
 
   apps/studio:
     dependencies:
+      '@packages/common':
+        specifier: workspace:*
+        version: link:../../packages/common
+      '@packages/supabase':
+        specifier: workspace:*
+        version: link:../../packages/supabase
       '@radix-ui/react-label':
         specifier: ^2.1.7
         version: 2.1.7(@types/react-dom@19.1.7(@types/react@19.1.11))(@types/react@19.1.11)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)

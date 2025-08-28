@@ -3,6 +3,7 @@ import {
   parseCookieHeader,
   serializeCookieHeader,
 } from '@supabase/ssr';
+import { CookieMethodsServer } from '@supabase/ssr/src/types';
 
 export const createSupabaseServerClient = (request: Request, env: Env) => {
   const headers = new Headers();
@@ -23,7 +24,7 @@ export const createSupabaseServerClient = (request: Request, env: Env) => {
             ),
           );
         },
-      },
+      } as CookieMethodsServer,
     },
   );
 

@@ -1,13 +1,14 @@
-import type { ReactElement } from 'react';
+import type { ComponentProps, ReactElement } from 'react';
 
 import { SocialLoginButton } from './social-login-button';
 
-interface GoogleLoginButtonProps {
-  onClick: () => void;
+interface GoogleLoginButtonProps extends ComponentProps<'button'> {
+  onClick?: () => void;
 }
 
 export function GoogleLoginButton({
   onClick,
+  ...props
 }: GoogleLoginButtonProps): ReactElement {
   const GoogleIcon = (
     <svg className="w-4 h-4 mr-3" viewBox="0 0 24 24">
@@ -31,6 +32,11 @@ export function GoogleLoginButton({
   );
 
   return (
-    <SocialLoginButton provider="Google" icon={GoogleIcon} onClick={onClick} />
+    <SocialLoginButton
+      provider="Google"
+      icon={GoogleIcon}
+      onClick={onClick}
+      {...props}
+    />
   );
 }
