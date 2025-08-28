@@ -1,6 +1,8 @@
 import { createSupabaseServerClient } from '@packages/supabase/server';
 import { type LoaderFunctionArgs, redirect } from 'react-router';
 
+import { ErrorPage } from '~/error-page';
+
 export async function loader({
   request,
   context,
@@ -16,15 +18,20 @@ export async function loader({
 
   console.info(`auth/callback CODE: ${code}, NEXT: ${next}`);
 
-  if (code) {
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
-    if (!error) {
-      return redirect(next, { headers });
-    } else {
-      console.error(error);
-    }
+  if (!code) {
+    throw new Response('Invalid code.', { status: 500 });
   }
 
-  // return the user to an error page with instructions
-  return redirect('/auth/error', { headers });
+  const { error } = await supabase.auth.exchangeCodeForSession(code);
+  if (error) {
+    console.error(error);
+    throw new Response(
+      `Unable to process your request. [code: ${error.code}]`,
+      { status: 500 },
+    );
+  }
+
+  return redirect(next, { headers });
 }
+
+export const ErrorBoundary = ErrorPage;

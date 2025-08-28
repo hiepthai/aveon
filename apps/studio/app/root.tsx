@@ -3,7 +3,6 @@ import './app.css';
 import { createSupabaseServerClient } from '@packages/supabase/server';
 import type { ReactElement } from 'react';
 import {
-  isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
@@ -11,6 +10,8 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from 'react-router';
+
+import { ErrorPage } from '~/error-page';
 
 import type { Route } from './+types/root';
 import { AuthProvider } from './lib/auth-context';
@@ -77,33 +78,4 @@ export default function App(): ReactElement {
   );
 }
 
-export function ErrorBoundary({
-  error,
-}: Route.ErrorBoundaryProps): ReactElement {
-  let message = 'Oops!';
-  let details = 'An unexpected error occurred.';
-  let stack: string | undefined;
-
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error';
-    details =
-      error.status === 404
-        ? 'The requested page could not be found.'
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
-  }
-
-  return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
-  );
-}
+export const ErrorBoundary = ErrorPage;

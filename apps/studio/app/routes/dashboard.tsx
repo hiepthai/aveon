@@ -168,9 +168,7 @@ function DashboardContent(): ReactElement {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <span className="text-sm font-medium text-gray-500">
-                  Email
-                </span>
+                <span className="text-sm font-medium text-gray-500">Email</span>
                 <p className="text-gray-900">{user.email}</p>
               </div>
               <div>
