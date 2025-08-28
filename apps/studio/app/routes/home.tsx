@@ -1,17 +1,13 @@
-import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import type { ReactElement } from 'react';
+import type { MetaFunction } from 'react-router';
 
-export function meta({}: Route.MetaArgs) {
+export const meta: MetaFunction = () => {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: 'New React Router App' },
+    { name: 'description', content: 'Welcome to React Router!' },
   ];
-}
+};
 
-export function loader({ context }: Route.LoaderArgs) {
-  return { message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE };
-}
-
-export default function Home({ loaderData }: Route.ComponentProps) {
-  return <Welcome message={loaderData.message} />;
+export default function Home(): ReactElement {
+  return <h1>Aveon Project</h1>;
 }
