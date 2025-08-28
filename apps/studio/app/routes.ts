@@ -6,4 +6,5 @@ export default [
   route('/auth/callback', 'routes/auth/callback.tsx'),
   route('/auth/error', 'routes/auth/error.tsx'),
   route('/logout', 'routes/auth/logout.tsx'),
+  route('/dashboard', 'routes/dashboard.tsx'),
 ] satisfies RouteConfig;

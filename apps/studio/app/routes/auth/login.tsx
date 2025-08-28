@@ -1,7 +1,6 @@
 import { createSupabaseServerClient } from '@packages/supabase/server';
 import { Star } from 'lucide-react';
 import type { ReactElement } from 'react';
-import { useState } from 'react';
 import {
   type ActionFunction,
   Form,
@@ -13,6 +12,7 @@ import {
 import { GoogleLoginButton } from '~/components/google-login-button';
 import { Button } from '~/components/ui/button';
 import { Card, CardContent, CardHeader } from '~/components/ui/card';
+import { UnprotectedRoute } from '~/lib/auth-context';
 
 export const meta: MetaFunction = () => {
   return [
@@ -71,17 +71,10 @@ export const action: ActionFunction = async ({ request, context }) => {
   return null;
 };
 
-export default function Login(): ReactElement {
-  const [isLoading, setIsLoading] = useState(false);
-
+function LoginPage(): ReactElement {
   const handleEmailLogin = () => {
     // TODO: Implement email login flow
     console.log('Continue with email clicked');
-  };
-
-  const handleSocialLogin = (provider: string) => {
-    // TODO: Implement social login
-    console.log(`Continue with ${provider} clicked`);
   };
 
   return (
@@ -129,5 +122,13 @@ export default function Login(): ReactElement {
         </Form>
       </Card>
     </div>
+  );
+}
+
+export default function Login(): ReactElement {
+  return (
+    <UnprotectedRoute>
+      <LoginPage />
+    </UnprotectedRoute>
   );
 }

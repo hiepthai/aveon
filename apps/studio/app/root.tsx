@@ -1,5 +1,7 @@
 import './app.css';
 
+import { createSupabaseServerClient } from '@packages/supabase/server';
+import type { ReactElement } from 'react';
 import {
   isRouteErrorResponse,
   Links,
@@ -7,9 +9,32 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from 'react-router';
 
 import type { Route } from './+types/root';
+import { AuthProvider } from './lib/auth-context';
+
+export const loader = async ({ request, context }: Route.LoaderArgs) => {
+  try {
+    const { supabase } = createSupabaseServerClient(
+      request,
+      context.cloudflare.env,
+    );
+
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
+
+    // Don't throw on auth errors, just return null user
+    return { user: error ? null : user };
+  } catch (error) {
+    console.error(error);
+    // If anything goes wrong, return null user
+    return { user: null };
+  }
+};
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -42,11 +67,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
-  return <Outlet />;
+export default function App(): ReactElement {
+  const { user } = useLoaderData<typeof loader>();
+
+  return (
+    <AuthProvider initialUser={user}>
+      <Outlet />
+    </AuthProvider>
+  );
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export function ErrorBoundary({
+  error,
+}: Route.ErrorBoundaryProps): ReactElement {
   let message = 'Oops!';
   let details = 'An unexpected error occurred.';
   let stack: string | undefined;
