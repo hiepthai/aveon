@@ -66,6 +66,7 @@ export default function SwipeableCards() {
   const [xp, setXp] = useState(0);
   const [achievements, setAchievements] = useState<string[]>([]);
   const [showAchievement, setShowAchievement] = useState<string | null>(null);
+  const [showResultsCard, setShowResultsCard] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const checkAchievements = (
@@ -111,6 +112,7 @@ export default function SwipeableCards() {
     setShowCelebration(false);
     setLevel(1);
     setXp(0);
+    setShowResultsCard(false);
   };
 
   const handleAnswerSelect = (answerIndex: number) => {
@@ -147,32 +149,41 @@ export default function SwipeableCards() {
     }
 
     setTimeout(() => {
-      setCards((prevCards) => prevCards.slice(1));
+      const newCards = cards.slice(1);
+      setCards(newCards);
+      if (newCards.length === 0) {
+        setShowResultsCard(true);
+      }
       setSelectedAnswer(null);
       setShowResult(false);
     }, 1500);
   };
 
   const handleStart = (clientX: number) => {
+    if (showResultsCard) return;
     setIsDragging(true);
     setStartX(clientX);
   };
 
   const handleMove = (clientX: number) => {
-    if (!isDragging) return;
+    if (!isDragging || showResultsCard) return;
     const offset = clientX - startX;
     setDragOffset(offset);
   };
 
   const handleEnd = () => {
-    if (!isDragging) return;
+    if (!isDragging || showResultsCard) return;
 
     const threshold = 100;
     if (Math.abs(dragOffset) > threshold && cards.length > 0) {
       if (selectedAnswer === null) {
-        setCards((prevCards) => prevCards.slice(1));
+        const newCards = cards.slice(1);
+        setCards(newCards);
         setTotalAnswered((prev) => prev + 1);
         setStreak(0);
+        if (newCards.length === 0) {
+          setShowResultsCard(true);
+        }
       }
     }
 
@@ -309,61 +320,93 @@ export default function SwipeableCards() {
       </div>
 
       <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
-        {cards.length === 0 ? (
-          <div className="text-center text-white">
-            <h2 className="text-2xl font-bold mb-4">Quiz Complete!</h2>
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-8 mb-6 text-slate-700 shadow-xl border border-slate-200">
-              <p className="text-slate-600 mb-4">
-                You've answered all the questions.
-              </p>
-              <p className="text-2xl font-bold text-slate-800 mb-6">
-                Final Score: {score}/{totalAnswered} (
-                {Math.round((score / totalAnswered) * 100)}%)
-              </p>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="bg-slate-50 rounded-lg p-3">
-                  <p className="text-slate-500 text-xs">Level Reached</p>
-                  <p className="font-semibold text-slate-700">{level}</p>
-                </div>
-                <div className="bg-slate-50 rounded-lg p-3">
-                  <p className="text-slate-500 text-xs">Best Streak</p>
-                  <p className="font-semibold text-slate-700">{bestStreak}</p>
-                </div>
-                <div className="bg-slate-50 rounded-lg p-3">
-                  <p className="text-slate-500 text-xs">Total XP</p>
-                  <p className="font-semibold text-slate-700">{xp}</p>
-                </div>
-                <div className="bg-slate-50 rounded-lg p-3">
-                  <p className="text-slate-500 text-xs">Achievements</p>
-                  <p className="font-semibold text-slate-700">
-                    {achievements.length}
-                  </p>
-                </div>
-              </div>
-              {achievements.length > 0 && (
-                <div className="mt-6">
-                  <p className="text-slate-600 mb-3 text-sm font-medium">
-                    🏆 Achievements Earned
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {achievements.map((achievement, index) => (
-                      <span
-                        key={index}
-                        className="bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 px-3 py-1 rounded-full text-xs font-medium border border-amber-200"
-                      >
-                        {achievement}
-                      </span>
-                    ))}
+        {showResultsCard ? (
+          <div
+            className="relative w-full max-w-sm select-none"
+            style={{ aspectRatio: '9/16', maxHeight: '80vh' }}
+          >
+            <Card className="absolute inset-0 border-0 shadow-2xl overflow-hidden bg-slate-800 text-white">
+              <CardContent className="p-0 h-full relative overflow-hidden">
+                <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+                  <div className="flex-1 flex items-center">
+                    <h2 className="text-3xl font-serif font-bold text-balance leading-tight text-white">
+                      Quiz Complete!
+                    </h2>
+                  </div>
+
+                  <div className="space-y-4 mb-6">
+                    <div className="text-center mb-6">
+                      <p className="text-2xl font-bold text-white mb-2">
+                        Final Score: {score}/{totalAnswered}
+                      </p>
+                      <p className="text-lg text-slate-300">
+                        {Math.round((score / totalAnswered) * 100)}% Accuracy
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="bg-slate-700/50 rounded-lg p-3 text-center">
+                        <p className="text-slate-300 text-xs mb-1">
+                          Level Reached
+                        </p>
+                        <p className="font-bold text-white text-lg">{level}</p>
+                      </div>
+                      <div className="bg-slate-700/50 rounded-lg p-3 text-center">
+                        <p className="text-slate-300 text-xs mb-1">
+                          Best Streak
+                        </p>
+                        <p className="font-bold text-white text-lg">
+                          {bestStreak}
+                        </p>
+                      </div>
+                      <div className="bg-slate-700/50 rounded-lg p-3 text-center">
+                        <p className="text-slate-300 text-xs mb-1">Total XP</p>
+                        <p className="font-bold text-white text-lg">{xp}</p>
+                      </div>
+                      <div className="bg-slate-700/50 rounded-lg p-3 text-center">
+                        <p className="text-slate-300 text-xs mb-1">
+                          Achievements
+                        </p>
+                        <p className="font-bold text-white text-lg">
+                          {achievements.length}
+                        </p>
+                      </div>
+                    </div>
+
+                    {achievements.length > 0 && (
+                      <div className="mt-4">
+                        <p className="text-slate-300 mb-3 text-sm font-medium">
+                          🏆 Achievements Earned
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {achievements.map((achievement, index) => (
+                            <span
+                              key={index}
+                              className="bg-gradient-to-r from-amber-600/20 to-orange-600/20 text-amber-200 px-3 py-1 rounded-full text-xs font-medium border border-amber-500/30"
+                            >
+                              {achievement}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="text-center">
+                    <Button
+                      onClick={resetCards}
+                      className="bg-slate-600 hover:bg-slate-500 text-white w-full"
+                    >
+                      Start New Quiz
+                    </Button>
                   </div>
                 </div>
-              )}
-            </div>
-            <Button
-              onClick={resetCards}
-              className="bg-slate-700 hover:bg-slate-800 text-white"
-            >
-              Start Over
-            </Button>
+              </CardContent>
+            </Card>
+          </div>
+        ) : cards.length === 0 ? (
+          <div className="text-center text-white">
+            <p>Loading results...</p>
           </div>
         ) : (
           <div
@@ -493,16 +536,19 @@ export default function SwipeableCards() {
                             </span>
                           )}
                         </div>
-                        <div className="flex space-x-1">
-                          {cards.slice(0, 5).map((_, i) => (
+                        <div className="flex flex-col items-end space-y-1">
+                          <div className="text-xs text-slate-400 font-medium">
+                            {quizData.length - cards.length + 1} /{' '}
+                            {quizData.length}
+                          </div>
+                          <div className="w-16 bg-slate-600 rounded-full h-1">
                             <div
-                              key={i}
-                              className={cn(
-                                'w-1.5 h-1.5 rounded-full transition-all',
-                                i === 0 ? 'bg-white' : 'bg-slate-500',
-                              )}
+                              className="bg-gradient-to-r from-blue-400 to-indigo-500 h-1 rounded-full transition-all duration-300 ease-out"
+                              style={{
+                                width: `${((quizData.length - cards.length) / quizData.length) * 100}%`,
+                              }}
                             />
-                          ))}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -516,9 +562,11 @@ export default function SwipeableCards() {
 
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center text-white/70 z-20">
         <p className="text-sm">
-          {selectedAnswer === null
-            ? 'Tap an answer to select'
-            : 'Swipe left or right to skip'}
+          {showResultsCard
+            ? 'Review your quiz results'
+            : selectedAnswer === null
+              ? 'Tap an answer to select'
+              : 'Swipe left or right to skip'}
         </p>
       </div>
     </div>
