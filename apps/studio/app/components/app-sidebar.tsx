@@ -58,13 +58,13 @@ export function AppSidebar(): ReactElement {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton>
+                <SidebarMenuButton disabled>
                   <MessageCircleQuestionMarkIcon />
                   Quizzes
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton>
+                <SidebarMenuButton disabled>
                   <ChartNoAxesCombinedIcon />
                   Analytics
                 </SidebarMenuButton>
@@ -77,13 +77,13 @@ export function AppSidebar(): ReactElement {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton>
+                <SidebarMenuButton disabled>
                   <UserIcon />
                   Profile
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton>
+                <SidebarMenuButton disabled>
                   <SettingsIcon />
                   Settings
                 </SidebarMenuButton>

@@ -2,7 +2,8 @@ import {
   ArrowUpIcon,
   ChartNoAxesCombinedIcon,
   FileCheckIcon,
-  MessageCircleQuestionMarkIcon, MousePointerClickIcon,
+  MessageCircleQuestionMarkIcon,
+  MousePointerClickIcon,
   SparklesIcon,
 } from 'lucide-react';
 import type { ReactElement } from 'react';
@@ -116,21 +117,22 @@ function DashboardContent(): ReactElement {
                   href="#1"
                   className="font-medium text-gray-900 text-sm leading-tight "
                 >
-                  What topics is best for giving a comprehensive driving test
-                  preparation course?
+                  Coming soon
                 </a>
               </li>
             </ul>
             <div className="flex bg-white items-end rounded-4xl p-3">
               <Textarea
-                placeholder="Start typing..."
+                placeholder="Ask anything"
                 className="text-base resize-none border-none shadow-none hover:ring-0 focus:ring-0 focus-visible:ring-0 min-h-8"
+                disabled
               />
               <Button
                 size="sm"
                 className="rounded-full w-10 h-10 p-0 bg-gray-600 hover:bg-gray-700"
+                disabled
               >
-                <ArrowUpIcon className="w-5 h-5" />
+                <ArrowUpIcon strokeWidth={4} />
               </Button>
             </div>
           </CardContent>
