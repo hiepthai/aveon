@@ -1,11 +1,3 @@
-import {
-  ChartNoAxesCombinedIcon,
-  FileCheckIcon,
-  HomeIcon,
-  MessageCircleQuestionMarkIcon,
-  SettingsIcon,
-  UserIcon,
-} from 'lucide-react';
 import type { ReactElement } from 'react';
 import { useLocation } from 'react-router';
 
@@ -23,48 +15,7 @@ import {
   SidebarMenuItem,
 } from '~/components/ui/sidebar';
 import { useAuth } from '~/lib/auth-context';
-
-const mainMenuItems = [
-  {
-    href: '/',
-    icon: HomeIcon,
-    label: 'Dashboard',
-    disabled: false,
-  },
-  {
-    href: '/flashcards',
-    icon: FileCheckIcon,
-    label: 'Flashcards',
-    disabled: false,
-  },
-  {
-    href: '/quizzes',
-    icon: MessageCircleQuestionMarkIcon,
-    label: 'Quizzes',
-    disabled: true,
-  },
-  {
-    href: '/analytics',
-    icon: ChartNoAxesCombinedIcon,
-    label: 'Analytics',
-    disabled: true,
-  },
-];
-
-const accountMenuItems = [
-  {
-    href: '/profile',
-    icon: UserIcon,
-    label: 'Profile',
-    disabled: true,
-  },
-  {
-    href: '/settings',
-    icon: SettingsIcon,
-    label: 'Settings',
-    disabled: true,
-  },
-];
+import { accountMenuItems, mainMenuItems } from '~/lib/navigation';
 
 export function AppSidebar(): ReactElement {
   const { user } = useAuth();
