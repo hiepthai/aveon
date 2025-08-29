@@ -9,6 +9,7 @@ import type { MetaFunction } from 'react-router';
 import { metaFunction } from '~/common/meta-function';
 import { Button } from '~/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card';
+import DashboardLayout from '~/layouts/dashboard-layout';
 import { ProtectedRoute, useAuth } from '~/lib/auth-context';
 
 export const meta: MetaFunction = metaFunction;
@@ -21,40 +22,8 @@ function DashboardContent(): ReactElement {
   }
 
   return (
-    <div className="min-h-screen bg-[#f6f7fb]">
-      <nav className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-sm">A</span>
-              </div>
-              <h1 className="text-xl font-semibold text-gray-900">
-                Aveon Studio
-              </h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                  <span className="text-gray-600 text-sm font-medium">
-                    {user.email?.charAt(0).toUpperCase()}
-                  </span>
-                </div>
-                <span className="text-sm text-gray-700 max-w-48 truncate">
-                  {user.email}
-                </span>
-              </div>
-              <form action="/logout" method="POST">
-                <Button type="submit" variant="secondary" size="sm">
-                  Logout
-                </Button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <DashboardLayout>
+      <div className="max-w-7xl">
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
             Welcome back,{' '}
@@ -174,8 +143,8 @@ function DashboardContent(): ReactElement {
             </div>
           </CardContent>
         </Card>
-      </main>
-    </div>
+      </div>
+    </DashboardLayout>
   );
 }
 
