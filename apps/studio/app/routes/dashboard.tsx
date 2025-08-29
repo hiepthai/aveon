@@ -21,8 +21,8 @@ function DashboardContent(): ReactElement {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow-sm border-b">
+    <div className="min-h-screen bg-[#f6f7fb]">
+      <nav className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
@@ -45,7 +45,7 @@ function DashboardContent(): ReactElement {
                 </span>
               </div>
               <form action="/logout" method="POST">
-                <Button type="submit" variant="outline" size="sm">
+                <Button type="submit" variant="secondary" size="sm">
                   Logout
                 </Button>
               </form>
@@ -66,13 +66,13 @@ function DashboardContent(): ReactElement {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+          <Card className="shadow-none hover:scale-105 transition-transform border-none cursor-pointer">
             <CardHeader className="pb-4">
-              <CardTitle className="flex items-center text-blue-900">
-                <div className="w-10 h-10 p-2 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+              <CardTitle className="space-y-4">
+                <div className="w-10 h-10 p-2 text-blue-900 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
                   <FileCheckIcon />
                 </div>
-                Create Flashcards
+                <h4 className="text-gray-900 text-2xl">Create Flashcards</h4>
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -80,52 +80,62 @@ function DashboardContent(): ReactElement {
                 Generate interactive flashcards for better learning and
                 retention.
               </p>
-              <Button size="sm" className="w-full">
+              <Button size="lg" className="w-full rounded-full">
                 Get Started
               </Button>
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+          <Card className="shadow-none hover:scale-105 transition-transform border-none cursor-pointer">
             <CardHeader className="pb-4">
-              <CardTitle className="flex items-center text-green-900">
-                <div className="w-10 h-10 p-2 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+              <CardTitle className="space-y-4">
+                <div className="w-10 h-10 p-2 text-green-900 bg-green-100 rounded-lg flex items-center justify-center mr-3">
                   <MessageCircleQuestionMarkIcon />
                 </div>
-                Build Quizzes
+                <h4 className="text-gray-900 text-2xl">Build Quizzes</h4>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600 text-sm mb-4">
                 Create engaging quizzes to test knowledge and understanding.
               </p>
-              <Button size="sm" variant="outline" className="w-full">
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full rounded-full"
+                disabled
+              >
                 Coming Soon
               </Button>
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+          <Card className="shadow-none hover:scale-105 transition-transform border-none cursor-pointer">
             <CardHeader className="pb-4">
-              <CardTitle className="flex items-center text-purple-900">
-                <div className="w-10 h-10 p-2 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+              <CardTitle className="space-y-4">
+                <div className="w-10 h-10 p-2 text-purple-900 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
                   <ChartNoAxesCombinedIcon />
                 </div>
-                Track Progress
+                <h4 className="text-gray-900 text-2xl">Track Progress</h4>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600 text-sm mb-4">
                 Monitor learning progress and performance analytics.
               </p>
-              <Button size="sm" variant="outline" className="w-full">
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full rounded-full"
+                disabled
+              >
                 Coming Soon
               </Button>
             </CardContent>
           </Card>
         </div>
 
-        <Card>
+        <Card className="shadow-none border-none">
           <CardHeader>
             <CardTitle>Account Information</CardTitle>
           </CardHeader>

@@ -18,7 +18,8 @@ export function SocialLoginButton({
     <Button
       variant="outline"
       onClick={onClick}
-      className="w-full justify-start border-gray-200 hover:bg-gray-50 py-3 cursor-pointer"
+      className="w-full justify-start border-gray-200 hover:bg-gray-50 py-3 cursor-pointer rounded-full"
+      size="lg"
       {...props}
     >
       {icon}

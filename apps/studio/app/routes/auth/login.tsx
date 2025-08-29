@@ -78,8 +78,8 @@ function LoginPage(): ReactElement {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <Card className="w-full max-w-sm bg-white shadow-lg">
+    <div className="min-h-screen flex items-center justify-center bg-[#f6f7fb] p-4">
+      <Card className="w-full max-w-sm shadow-none border-none">
         <CardHeader className="relative pb-4">
           <div className="flex justify-between items-start mb-4">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -87,7 +87,9 @@ function LoginPage(): ReactElement {
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold text-gray-900">Get started</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">
+              Get started
+            </h2>
             <p className="text-sm text-gray-600 leading-relaxed">
               Welcome to Aveon Studio. Sign in to start generating amazing
               flashcards and quizzes.
@@ -112,10 +114,11 @@ function LoginPage(): ReactElement {
             <div className="space-y-3">
               <Button
                 onClick={handleEmailLogin}
-                disabled={true}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+                size="lg"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-full"
               >
-                Continue with Email (soon)
+                Coming soon
               </Button>
             </div>
           </CardContent>{' '}
