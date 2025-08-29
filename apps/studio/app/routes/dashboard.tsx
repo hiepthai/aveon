@@ -2,16 +2,12 @@ import type { ReactElement } from 'react';
 import { useState } from 'react';
 import type { MetaFunction } from 'react-router';
 
+import { metaFunction } from '~/common/meta-function';
 import { Button } from '~/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card';
 import { ProtectedRoute, useAuth } from '~/lib/auth-context';
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: 'Dashboard - Aveon Studio' },
-    { name: 'description', content: 'Aveon Studio Dashboard' },
-  ];
-};
+export const meta: MetaFunction = metaFunction;
 
 function DashboardContent(): ReactElement {
   const { user, signOut } = useAuth();
