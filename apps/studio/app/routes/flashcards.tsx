@@ -181,8 +181,9 @@ function FlashcardsContent(): ReactElement {
                     <Button
                       size="sm"
                       className="flex-1 bg-blue-600 hover:bg-blue-700 text-white rounded-full"
+                      asChild
                     >
-                      Study Now
+                      <a href={`/flashcards/${set.id}/play`}> Study Now</a>
                     </Button>
                     <Button
                       size="sm"
