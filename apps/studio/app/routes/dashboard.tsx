@@ -10,22 +10,11 @@ import { ProtectedRoute, useAuth } from '~/lib/auth-context';
 export const meta: MetaFunction = metaFunction;
 
 function DashboardContent(): ReactElement {
-  const { user, signOut } = useAuth();
-  const [isSigningOut, setIsSigningOut] = useState(false);
+  const { user } = useAuth();
 
   if (!user) {
     return <div>Loading...</div>;
   }
-
-  const handleSignOut = async () => {
-    try {
-      setIsSigningOut(true);
-      await signOut();
-    } catch (error) {
-      console.error('Sign out failed:', error);
-      setIsSigningOut(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -51,14 +40,11 @@ function DashboardContent(): ReactElement {
                   {user.email}
                 </span>
               </div>
-              <Button
-                onClick={handleSignOut}
-                variant="outline"
-                size="sm"
-                disabled={isSigningOut}
-              >
-                {isSigningOut ? 'Signing out...' : 'Sign Out'}
-              </Button>
+              <form action="/logout" method="POST">
+                <Button type="submit" variant="outline" size="sm">
+                  Logout
+                </Button>
+              </form>
             </div>
           </div>
         </div>

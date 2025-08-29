@@ -8,7 +8,6 @@ import { LoadingSpinner } from '~/components/loading-spinner';
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  signOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -22,9 +21,8 @@ export function AuthProvider({
   children,
   initialUser = null,
 }: AuthProviderProps): ReactElement {
-  const [user, setUser] = useState<User | null>(initialUser);
+  const [user] = useState<User | null>(initialUser);
   const [loading, setLoading] = useState(!initialUser);
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Listen for auth state changes on the client side
@@ -35,21 +33,9 @@ export function AuthProvider({
     }
   }, []);
 
-  const signOut = async () => {
-    setLoading(true);
-    try {
-      // Redirect to logout route which handles server-side sign out
-      navigate('/logout');
-    } catch (error) {
-      console.error('Sign out error:', error);
-      setLoading(false);
-    }
-  };
-
   const value = {
     user,
     loading,
-    signOut,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

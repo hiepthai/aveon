@@ -1,7 +1,7 @@
 import { createSupabaseServerClient } from '@packages/supabase/server';
-import { type LoaderFunction, redirect } from 'react-router';
+import { type ActionFunction, redirect } from 'react-router';
 
-export const loader: LoaderFunction = async ({ request, context }) => {
+export const action: ActionFunction = async ({ request, context }) => {
   const { supabase, headers } = createSupabaseServerClient(
     request,
     context.cloudflare.env,
