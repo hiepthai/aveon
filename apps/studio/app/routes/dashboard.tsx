@@ -1,5 +1,9 @@
+import {
+  ChartNoAxesCombinedIcon,
+  FileCheckIcon,
+  MessageCircleQuestionMarkIcon,
+} from 'lucide-react';
 import type { ReactElement } from 'react';
-import { useState } from 'react';
 import type { MetaFunction } from 'react-router';
 
 import { metaFunction } from '~/common/meta-function';
@@ -65,14 +69,8 @@ function DashboardContent(): ReactElement {
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-blue-900">
-                <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                  <svg
-                    className="w-4 h-4 text-blue-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+                <div className="w-10 h-10 p-2 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                  <FileCheckIcon />
                 </div>
                 Create Flashcards
               </CardTitle>
@@ -91,18 +89,8 @@ function DashboardContent(): ReactElement {
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-green-900">
-                <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
-                  <svg
-                    className="w-4 h-4 text-green-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                <div className="w-10 h-10 p-2 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                  <MessageCircleQuestionMarkIcon />
                 </div>
                 Build Quizzes
               </CardTitle>
@@ -120,14 +108,8 @@ function DashboardContent(): ReactElement {
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-purple-900">
-                <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                  <svg
-                    className="w-4 h-4 text-purple-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
-                  </svg>
+                <div className="w-10 h-10 p-2 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                  <ChartNoAxesCombinedIcon />
                 </div>
                 Track Progress
               </CardTitle>
