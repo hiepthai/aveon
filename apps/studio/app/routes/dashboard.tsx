@@ -2,7 +2,8 @@ import {
   ArrowUpIcon,
   ChartNoAxesCombinedIcon,
   FileCheckIcon,
-  MessageCircleQuestionMarkIcon,
+  MessageCircleQuestionMarkIcon, MousePointerClickIcon,
+  SparklesIcon,
 } from 'lucide-react';
 import type { ReactElement } from 'react';
 import type { MetaFunction } from 'react-router';
@@ -37,21 +38,24 @@ function DashboardContent(): ReactElement {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <Card className="shadow-none hover:scale-105 transition-transform border-none cursor-pointer">
+          <Card className="shadow-none hover:scale-105 transition-transform border-none cursor-pointer bg-gradient-to-br from-blue-400 to-blue-600">
             <CardHeader className="pb-4">
               <CardTitle className="space-y-4">
-                <div className="w-10 h-10 p-2 text-blue-900 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                <div className="w-10 h-10 p-2 text-white bg-white/20 rounded-lg flex items-center justify-center mr-3">
                   <FileCheckIcon />
                 </div>
-                <h4 className="text-gray-900 text-2xl">Create Flashcards</h4>
+                <h4 className="text-white text-2xl">Create Flashcards</h4>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-white/80 text-sm mb-4">
                 Generate interactive flashcards for better learning and
                 retention.
               </p>
-              <Button size="lg" className="w-full rounded-full">
+              <Button
+                size="lg"
+                className="w-full rounded-full bg-white text-blue-600 hover:bg-white/90"
+              >
                 Get Started
               </Button>
             </CardContent>
@@ -105,46 +109,18 @@ function DashboardContent(): ReactElement {
         </div>
         <Card className="shadow-none border-none bg-transparent mt-auto">
           <CardContent>
-            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
-              <Button
-                variant="outline"
-                className="h-auto p-3 text-left bg-white hover:bg-gray-50 border-none rounded-lg text-sm"
-              >
-                <div className="text-left">
-                  <div className="font-medium text-gray-900 text-xs mb-1 leading-tight">
-                    What topics is best for giving a...
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    Get key tips from driving
-                  </div>
-                </div>
-              </Button>
-              <Button
-                variant="outline"
-                className="h-auto p-3 text-left bg-white hover:bg-gray-50 border-none rounded-lg text-sm"
-              >
-                <div className="text-left">
-                  <div className="font-medium text-gray-900 text-xs mb-1 leading-tight">
-                    Give 3 arguments for and against...
-                  </div>
-                  <div className="text-xs text-gray-500">Unity v. Unreal</div>
-                </div>
-              </Button>
-
-              <Button
-                variant="outline"
-                className="h-auto p-3 text-left bg-white hover:bg-gray-50 border-none rounded-lg text-sm"
-              >
-                <div className="text-left">
-                  <div className="font-medium text-gray-900 text-xs mb-1 leading-tight">
-                    What should I pack for a 3-day tr...
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    With great weather
-                  </div>
-                </div>
-              </Button>
-            </div>
+            <ul className="space-y-2 mb-2">
+              <li className="inline-flex items-center bg-white/50 hover:bg-white rounded-full p-2 gap-2">
+                <MousePointerClickIcon className="w-5 h-5 text-blue-600 fill-blue-600" />
+                <a
+                  href="#1"
+                  className="font-medium text-gray-900 text-sm leading-tight "
+                >
+                  What topics is best for giving a comprehensive driving test
+                  preparation course?
+                </a>
+              </li>
+            </ul>
             <div className="flex bg-white items-end rounded-4xl p-3">
               <Textarea
                 placeholder="Start typing..."
