@@ -6,10 +6,9 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbSeparator,
 } from '~/components/ui/breadcrumb';
-import { SidebarProvider, SidebarTrigger } from '~/components/ui/sidebar';
 import { Separator } from '~/components/ui/separator';
+import { SidebarProvider, SidebarTrigger } from '~/components/ui/sidebar';
 
 export default function DashboardLayout({
   children,
@@ -19,7 +18,7 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="w-full bg-[#f6f7fb] py-6 px-4 sm:px-6 lg:px-8 space-y-4">
+      <main className="w-full min-h-svh bg-[#f6f7fb] py-6 px-4 sm:px-6 lg:px-8 space-y-4">
         <header className="flex h-5 items-center gap-3">
           <SidebarTrigger />
           <Separator orientation="vertical" />
