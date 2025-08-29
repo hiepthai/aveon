@@ -7,6 +7,7 @@ import {
   UserIcon,
 } from 'lucide-react';
 import type { ReactElement } from 'react';
+import { useLocation } from 'react-router';
 
 import { Button } from '~/components/ui/button';
 import {
@@ -23,8 +24,51 @@ import {
 } from '~/components/ui/sidebar';
 import { useAuth } from '~/lib/auth-context';
 
+const mainMenuItems = [
+  {
+    href: '/',
+    icon: HomeIcon,
+    label: 'Dashboard',
+    disabled: false,
+  },
+  {
+    href: '/flashcards',
+    icon: FileCheckIcon,
+    label: 'Flashcards',
+    disabled: false,
+  },
+  {
+    href: '/quizzes',
+    icon: MessageCircleQuestionMarkIcon,
+    label: 'Quizzes',
+    disabled: true,
+  },
+  {
+    href: '/analytics',
+    icon: ChartNoAxesCombinedIcon,
+    label: 'Analytics',
+    disabled: true,
+  },
+];
+
+const accountMenuItems = [
+  {
+    href: '/profile',
+    icon: UserIcon,
+    label: 'Profile',
+    disabled: true,
+  },
+  {
+    href: '/settings',
+    icon: SettingsIcon,
+    label: 'Settings',
+    disabled: true,
+  },
+];
+
 export function AppSidebar(): ReactElement {
   const { user } = useAuth();
+  const location = useLocation();
 
   if (!user) {
     return <div>Loading...</div>;
@@ -45,30 +89,32 @@ export function AppSidebar(): ReactElement {
           <SidebarGroupLabel>Main</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton isActive>
-                  <HomeIcon />
-                  Dashboard
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <FileCheckIcon />
-                  Flashcards
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton disabled>
-                  <MessageCircleQuestionMarkIcon />
-                  Quizzes
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton disabled>
-                  <ChartNoAxesCombinedIcon />
-                  Analytics
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {mainMenuItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.href;
+
+                return (
+                  <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton
+                      asChild={!item.disabled}
+                      disabled={item.disabled}
+                      isActive={isActive}
+                    >
+                      {item.disabled ? (
+                        <>
+                          <Icon />
+                          {item.label}
+                        </>
+                      ) : (
+                        <a href={item.href}>
+                          <Icon />
+                          {item.label}
+                        </a>
+                      )}
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -76,18 +122,32 @@ export function AppSidebar(): ReactElement {
           <SidebarGroupLabel>Account</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton disabled>
-                  <UserIcon />
-                  Profile
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton disabled>
-                  <SettingsIcon />
-                  Settings
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {accountMenuItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.href;
+
+                return (
+                  <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton
+                      asChild={!item.disabled}
+                      disabled={item.disabled}
+                      isActive={isActive}
+                    >
+                      {item.disabled ? (
+                        <>
+                          <Icon />
+                          {item.label}
+                        </>
+                      ) : (
+                        <a href={item.href}>
+                          <Icon />
+                          {item.label}
+                        </a>
+                      )}
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
