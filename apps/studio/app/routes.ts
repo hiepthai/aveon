@@ -10,4 +10,5 @@ export default [
   route('/flashcards', 'routes/flashcards.tsx'),
   route('/flashcards/:id/play', 'routes/flashcards/play.tsx'),
   route('/flashcards/:id/quiz', 'routes/flashcards/quiz.tsx'),
+  route('/flashcards/:id/learn', 'routes/flashcards/learn.tsx'),
 ] satisfies RouteConfig;
